@@ -38,7 +38,25 @@
             margin: 10px 0;
         }
     </style>
+	
+	
+<nav class="navbar navbar-expand-lg bg-light" style="margin-bottom : 10px; background-color: #353535 !important; border-radius: 25px;">
+  <div class="container-fluid" style="margin-left: 10px;">
+    <a style="color: white;" class="navbar-brand" href="#">JVLAN Game Downloader</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-4 mb-lg-0">
+        <li class="nav-item">
+          <a style="color: white;" class="nav-link active btn btn-secondary" aria-current="page" href="https://intranet.jvlan.ch">Retour Intranet</a>
+        </li>
+        </div>
+  </div>
+</nav>
+        
   </head>
+  <div style="color: white">Un guide d'nstallation très simple est trouvable dans chaque fichier .zip nommé "Guide-NomDuJeu.txt"</div><br><br>
   <body class="p-3 m-0 border-0 bd-example m-0 border-0">
     <div class="row row-cols-1 row-cols-md-6 g-4">
     
@@ -55,7 +73,7 @@
         </div>
           <div class="card-body">
             <h5 class="card-title">' . "$folder" . '</h5>
-            <a href="' . "$folder" . '/download.zip" class="btn btn-dark" style="float: right;">Téléchargement (ZIP)</a>
+            <a href="' . "$folder" . '/' . "$folder" . '-JVLAN.zip" class="btn btn-dark" style="float: right;">Téléchargement (ZIP)</a>
           </div>
         </div>
       </div>
