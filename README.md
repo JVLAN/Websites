@@ -21,3 +21,11 @@ Basically to make it work, you need to create a folder, the php file will list a
 Then in each folder it will search for the logo.png file which will be shown as the image of the game.
 Then you need to create a zip file of each game called download.zip. 
 From there each player will be able to download the wanted games.
+
+
+## StreamingExplorer
+Our internal streaming explorer.
+Often hosted on streaming.jvlan.ch
+It allows our streamers to use the webcams avalible in the LAN.
+They can then integrate it in their stream via "Source Browser" in OBS or StreamLabs.
+If the camera is able to output whep it will be enabled (0.3-1s), if not a higher latency will be in place (2-4s).
