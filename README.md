@@ -29,3 +29,4 @@ Often hosted on streaming.jvlan.ch
 It allows our streamers to use the webcams avalible in the LAN.
 They can then integrate it in their stream via "Source Browser" in OBS or StreamLabs.
 If the camera is able to output whep it will be enabled (0.3-1s), if not a higher latency will be in place (2-4s).
+Based on https://github.com/JVLAN/mediamtx with modifications for OBS and Streamlabs
