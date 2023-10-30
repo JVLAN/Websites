@@ -80,7 +80,6 @@
         <div class="card card-body d-flex flex-column">
         <div class="image">
             <img class="bd-placeholder-img card-img-top" height="500" src="' . "$folder" . '/logo.png" focusable="false"></img>
-            <div class="centered"">' . "$folder" . '</div>
         </div>
           <div class="card-body">
             <h5 class="card-title">' . "$folder" . '</h5>
