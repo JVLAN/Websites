@@ -1,0 +1,56 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY WISP - https:\/\/wisp.gg\/",
+    "meta": {
+        "version": "PTDL_v1"
+    },
+    "exported_at": "2024-10-04T17:33:46+00:00",
+    "name": "Warfork",
+    "tag": "warfork",
+    "author": "support@polisystems.ch",
+    "description": "Warfork is a demanding fast paced first person shooter with a focus on speed, aim, movement, and above all competitive play. There are no gimmicks such as leveling up, purchasable weapons, gory graphic violence, etc.",
+    "image": "ghcr.io\/parkervcp\/steamcmd:debian",
+    "startup": ".\/wf_server.x86_64 start",
+    "disable_special_characters_in_database_passwords": false,
+    "config": {
+        "files": "{}",
+        "startup": "{\n    \"done\": \"Sending heartbeat to\"\n}",
+        "logs": "{}",
+        "stop": "^C",
+        "custom": "{}"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH}  +app_update ${SRCDS_APPID} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        },
+        "update": {
+            "script": null,
+            "container": "alpine:3.4",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "APP ID",
+            "description": "App ID for SRCDS",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "1136510",
+            "tickable": false,
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:1136510"
+        },
+        {
+            "name": "Auto update",
+            "description": "Auto update the server on restart",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "tickable": false,
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean"
+        }
+    ],
+    "mods": []
+}
